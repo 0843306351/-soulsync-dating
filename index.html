@@ -3,401 +3,298 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#30133f">
-<meta name="description" content="SOULsync — discover meaningful connections across South Africa.">
-<title>SOULsync | Find Your Connection</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#24102f">
+<meta name="description" content="SOULsync — meaningful connections across South Africa.">
+<title>SOULsync — Find Your Connection</title>
 <style>
-:root {
-  --bg:#190e21; --panel:#281633; --panel2:#35203f;
-  --pink:#ff75cf; --purple:#aa83ff; --text:#fff7ff;
-  --muted:#c6b5ce; --line:#51345e; --green:#83f1bd;
-}
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  margin:0; background:var(--bg); color:var(--text);
-  font-family:Arial,Helvetica,sans-serif; line-height:1.5;
-}
-button,input,textarea,select { font:inherit; }
-button { cursor:pointer; }
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
-  outline:2px solid var(--pink); outline-offset:3px;
-}
-.top {
-  position:sticky;top:0;z-index:10;
-  background:#190e21ed;backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-  padding:12px 16px;display:flex;justify-content:space-between;
-  align-items:center;gap:12px;
-}
-.logo {font-size:23px;font-weight:900;letter-spacing:-1px;}
-.logo span {color:var(--pink);}
-.pill {
-  display:inline-block;border:1px solid var(--line);border-radius:30px;
-  padding:5px 10px;font-size:12px;color:var(--muted);
-}
-main {max-width:900px;margin:auto;padding:18px 14px 95px;}
-.hero {
-  padding:30px 22px;border-radius:25px;
-  background:radial-gradient(circle at 90% 10%,#74417e 0,transparent 38%),
-  linear-gradient(140deg,#382044,#21112d);
-  border:1px solid #684477;overflow:hidden;
-}
-.eyebrow {color:var(--pink);font-size:12px;font-weight:800;letter-spacing:2px;}
-h1 {font-size:clamp(36px,9vw,62px);line-height:1.02;letter-spacing:-2px;margin:12px 0;}
-h1 span {color:var(--pink);}
-h2 {font-size:24px;margin:0 0 8px;}
-h3 {margin:5px 0;}
-p {color:var(--muted);}
-.hero p {max-width:510px;}
-.btn {
-  border:0;border-radius:13px;padding:12px 17px;font-weight:800;
-  color:#21102b;background:linear-gradient(100deg,var(--pink),var(--purple));
-}
-.btn.secondary {background:var(--panel2);border:1px solid var(--line);color:var(--text);}
-.btn.danger {background:#51243d;color:#ffd5ed;}
-.btn.small {padding:8px 11px;font-size:13px;}
-.actions {display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;}
-.stats {display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0 25px;}
-.stat {background:var(--panel);border:1px solid var(--line);padding:13px 8px;border-radius:15px;text-align:center;}
-.stat strong {display:block;font-size:22px;color:var(--pink);}
-.stat small {color:var(--muted);font-size:11px;}
-.section {margin-top:27px;scroll-margin-top:85px;}
-.section-head {display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px;}
-.section-head p {margin:0;font-size:13px;}
-.grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
-.card {background:var(--panel);border:1px solid var(--line);border-radius:19px;overflow:hidden;}
-.profile-art {
-  min-height:150px;display:flex;align-items:center;justify-content:center;
-  font-size:68px;background:linear-gradient(140deg,#603c76,#32203f);
-}
-.art2 {background:linear-gradient(140deg,#87506f,#382340);}
-.art3 {background:linear-gradient(140deg,#504d91,#30213f);}
-.art4 {background:linear-gradient(140deg,#a35485,#38213e);}
-.card-body {padding:12px;}
-.card-body p {font-size:13px;margin:6px 0 12px;}
-.card-actions {display:flex;gap:7px;}
-.card-actions button {flex:1;}
-.tag {font-size:11px;border-radius:20px;padding:4px 8px;background:#43284f;color:#f5d9ff;display:inline-block;}
-.mood {color:var(--pink);}
-.notice {font-size:12px;padding:11px 13px;background:#24152d;border:1px solid var(--line);border-radius:12px;color:var(--muted);}
-.panel {background:var(--panel);border:1px solid var(--line);padding:17px;border-radius:19px;}
-label {display:block;margin:13px 0 5px;font-size:13px;color:#eadcf0;}
-input,textarea,select {
-  width:100%;padding:12px;border-radius:11px;
-  border:1px solid var(--line);background:#1c1025;color:var(--text);
-}
-textarea {min-height:90px;resize:vertical;}
-.field-grid {display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.preview-pics {display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
-.preview-pics img {width:75px;height:75px;object-fit:cover;border-radius:10px;}
-.tabs {
-  display:flex;gap:8px;overflow-x:auto;padding:11px 14px;
-  background:#21132b;border-bottom:1px solid var(--line);
-}
-.tabs button {white-space:nowrap;border:1px solid var(--line);border-radius:30px;padding:9px 13px;background:transparent;color:var(--muted);}
-.tabs button.active {background:var(--pink);color:#26102c;border-color:var(--pink);font-weight:800;}
-.page {display:none;}
-.page.active {display:block;}
-.message {padding:10px 12px;border-radius:14px;background:var(--panel2);margin:8px 0;max-width:90%;}
-.message.mine {margin-left:auto;background:#663a75;}
-.bottom-nav {
-  position:fixed;bottom:0;left:0;right:0;z-index:20;
-  display:flex;justify-content:space-around;gap:3px;
-  background:#21132bf5;border-top:1px solid var(--line);
-  padding:9px 4px max(9px,env(safe-area-inset-bottom));
-}
-.bottom-nav button {border:0;background:transparent;color:var(--muted);font-size:11px;padding:5px 4px;}
-.bottom-nav button span {display:block;font-size:19px;}
-.bottom-nav button.active {color:var(--pink);}
-.price {font-size:38px;font-weight:900;margin:5px 0;}
-.price small {font-size:14px;color:var(--muted);font-weight:400;}
-.feature {padding:10px 0;border-bottom:1px solid var(--line);}
-.feature:last-child {border:0;}
-footer {text-align:center;font-size:12px;color:var(--muted);padding:30px 5px;}
-.hidden {display:none!important;}
-@media(min-width:650px) {
-  main {padding:25px 22px 100px;}
-  .grid {grid-template-columns:repeat(3,minmax(0,1fr));}
-  .profile-art {min-height:190px;}
-  .hero {padding:42px;}
-}
+:root{--bg:#170e20;--panel:#261632;--panel2:#35203f;--pink:#ff7bd2;--purple:#b69aff;--text:#fff8ff;--muted:#c9b9d2;--line:#50365d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+header{position:sticky;top:0;z-index:5;background:#1b1024f5;border-bottom:1px solid var(--line);padding:13px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--pink)}
+.badge{border:1px solid var(--line);padding:5px 9px;border-radius:20px;color:var(--muted);font-size:12px}
+nav{display:flex;gap:7px;overflow-x:auto;padding:10px;background:#21132b;border-bottom:1px solid var(--line)}
+nav button{white-space:nowrap;background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:25px;padding:9px 12px}
+nav button.active{background:var(--pink);color:#27102d;font-weight:bold}
+main{max-width:850px;margin:auto;padding:15px 13px 95px}
+.hero{padding:27px 21px;border-radius:23px;background:radial-gradient(circle at 90% 5%,#754480,transparent 42%),linear-gradient(135deg,#3b2248,#21112c);border:1px solid #654273}
+.eyebrow{font-size:11px;letter-spacing:2px;font-weight:bold;color:var(--pink)}
+h1{font-size:clamp(36px,9vw,58px);line-height:1.05;letter-spacing:-2px;margin:12px 0}
+h1 span{color:var(--pink)}h2{font-size:23px;margin:0 0 6px}h3{margin:5px 0}
+p{color:var(--muted)}.hero p{max-width:490px}
+.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:bold;color:#25102d;background:linear-gradient(100deg,var(--pink),var(--purple))}
+.btn.alt{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+.btn.small{font-size:13px;padding:8px 10px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.stat,.panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.stat{text-align:center;padding:11px 4px}.stat strong{display:block;color:var(--pink);font-size:21px}.stat small{color:var(--muted);font-size:11px}
+.notice{font-size:12px;padding:11px;border-radius:11px;border:1px solid var(--line);background:#21142a;color:var(--muted)}
+.page{display:none;margin-top:25px}.page.active{display:block}
+.heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.card{overflow:hidden}.art{height:145px;display:grid;place-items:center;font-size:64px;background:linear-gradient(135deg,#634174,#30203c)}
+.art.b{background:linear-gradient(135deg,#985577,#39213f)}.art.c{background:linear-gradient(135deg,#56528f,#30203f)}.art.d{background:linear-gradient(135deg,#a75586,#38213f)}
+.cardbody{padding:11px}.cardbody p{font-size:13px;margin:5px 0 11px}.mood{color:var(--pink);font-size:13px}
+.cardactions{display:flex;gap:6px}.cardactions button{flex:1}
+.panel{padding:15px;margin-top:12px}
+label{display:block;font-size:13px;margin:12px 0 5px;color:#eadcf0}
+input,textarea,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#1b1024;color:var(--text)}
+textarea{min-height:85px;resize:vertical}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.photo-preview{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.photo-preview img{width:70px;height:70px;object-fit:cover;border-radius:9px}
+.message{max-width:90%;width:fit-content;padding:10px 12px;border-radius:13px;background:var(--panel2);margin:8px 0}
+.message.mine{margin-left:auto;background:#673a76}
+.rowitem{padding:11px 0;border-bottom:1px solid var(--line)}.rowitem:last-child{border:0}
+.price{font-size:38px;font-weight:900;margin:5px 0}.price small{font-size:14px;color:var(--muted);font-weight:normal}
+.hidden{display:none!important}
+.bottom{position:fixed;bottom:0;left:0;right:0;z-index:8;display:flex;justify-content:space-around;background:#21132bf5;border-top:1px solid var(--line);padding:7px 3px max(7px,env(safe-area-inset-bottom))}
+.bottom button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:4px}
+.bottom button span{display:block;font-size:18px}.bottom button.active{color:var(--pink)}
+footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
+@media(min-width:650px){main{padding:24px 20px 100px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.art{height:180px}.hero{padding:40px}}
 </style>
 </head>
 <body>
-<header class="top">
-  <div class="logo">SOUL<span>sync</span> ♡</div>
-  <span class="pill">South Africa 🇿🇦</span>
+<header>
+ <div class="logo">SOUL<span>sync</span> ♡</div>
+ <span class="badge">South Africa 🇿🇦</span>
 </header>
 
-<nav class="tabs" aria-label="Main navigation">
-  <button class="active" data-page="discover">💜 Discover</button>
-  <button data-page="matches">💕 Matches</button>
-  <button data-page="chats">💬 Chats</button>
-  <button data-page="nearby">📍 Nearby</button>
-  <button data-page="profile">👤 My Profile</button>
-  <button data-page="premium">✨ Premium</button>
+<nav aria-label="Main navigation">
+ <button class="active" data-page="discover">💜 Discover</button>
+ <button data-page="matches">💕 Matches</button>
+ <button data-page="chats">💬 Chats</button>
+ <button data-page="nearby">📍 Nearby</button>
+ <button data-page="profile">👤 Profile</button>
+ <button data-page="premium">✨ Premium</button>
 </nav>
 
 <main>
-<section id="home" class="hero">
-  <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
-  <h1>Find your<br><span>kind of connection.</span></h1>
-  <p>Meet people, discover new vibes and make space for something real. Your story deserves a beautiful beginning.</p>
-  <div class="actions">
-    <button class="btn" onclick="go('discover')">Explore people →</button>
-    <button class="btn secondary" onclick="go('profile')">Create my profile</button>
-  </div>
+<section class="hero">
+ <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
+ <h1>Find your<br><span>kind of connection.</span></h1>
+ <p>Meet people, discover new vibes and make space for something real. Your story deserves a beautiful beginning.</p>
+ <div class="actions">
+  <button class="btn" data-go="discover">Explore people →</button>
+  <button class="btn alt" data-go="profile">Create my profile</button>
+ </div>
 </section>
 
 <div class="stats">
-  <div class="stat"><strong id="members">—</strong><small>Members</small></div>
-  <div class="stat"><strong id="active">—</strong><small>Active now</small></div>
-  <div class="stat"><strong>18+</strong><small>Adults only</small></div>
+ <div class="stat"><strong>—</strong><small>Members</small></div>
+ <div class="stat"><strong>—</strong><small>Active now</small></div>
+ <div class="stat"><strong>18+</strong><small>Adults only</small></div>
 </div>
-<p class="notice">Preview mode: member and active-user counts will appear only after a real backend is connected. Demo profiles below are fictional.</p>
+<p class="notice">Community totals will appear when SOULsync is connected to its member database.</p>
 
-<section id="page-discover" class="page active section">
-  <div class="section-head">
-    <div><h2>Discover your people ✨</h2><p>Every connection starts somewhere.</p></div>
-    <span class="tag">DEMO</span>
-  </div>
-  <div class="grid" id="people">
-    <article class="card">
-      <div class="profile-art">🌸</div>
-      <div class="card-body"><span class="tag">Fictional demo</span><h3>Amara, 25</h3><p>📍 Johannesburg<br><span class="mood">♡ Romantic</span></p><p>Good energy, deep talks and little adventures.</p><div class="card-actions"><button class="btn secondary small" onclick="pass('Amara')">Pass</button><button class="btn small" onclick="like('Amara')">♡ Like</button></div></div>
-    </article>
-    <article class="card">
-      <div class="profile-art art2">🌻</div>
-      <div class="card-body"><span class="tag">Fictional demo</span><h3>Lerato, 27</h3><p>📍 Pretoria<br><span class="mood">☀ Happy</span></p><p>Music, laughter and a genuine connection.</p><div class="card-actions"><button class="btn secondary small" onclick="pass('Lerato')">Pass</button><button class="btn small" onclick="like('Lerato')">♡ Like</button></div></div>
-    </article>
-    <article class="card">
-      <div class="profile-art art3">🌙</div>
-      <div class="card-body"><span class="tag">Fictional demo</span><h3>Thabo, 28</h3><p>📍 Polokwane<br><span class="mood">☁ Chilled</span></p><p>Easy conversations and a peaceful vibe.</p><div class="card-actions"><button class="btn secondary small" onclick="pass('Thabo')">Pass</button><button class="btn small" onclick="like('Thabo')">♡ Like</button></div></div>
-    </article>
-    <article class="card">
-      <div class="profile-art art4">🦋</div>
-      <div class="card-body"><span class="tag">Fictional demo</span><h3>Zanele, 26</h3><p>📍 Durban<br><span class="mood">♡ Thinking</span></p><p>Looking for kindness, honesty and fun.</p><div class="card-actions"><button class="btn secondary small" onclick="pass('Zanele')">Pass</button><button class="btn small" onclick="like('Zanele')">♡ Like</button></div></div>
-    </article>
-  </div>
-  <p class="notice" style="margin-top:14px">These are fictional sample profiles to demonstrate the layout. They are not real members.</p>
+<section id="page-discover" class="page active">
+ <div class="heading"><div><h2>Discover your people ✨</h2><p>Every connection starts somewhere.</p></div></div>
+ <div class="grid">
+  <article class="card">
+   <div class="art">🌸</div><div class="cardbody"><h3>Amara, 25</h3><p>📍 Johannesburg<br><span class="mood">♡ Romantic</span></p><p>Good energy, deep talks and little adventures.</p><div class="cardactions"><button class="btn alt small" data-pass="Amara">Pass</button><button class="btn small" data-like="Amara">♡ Like</button></div></div>
+  </article>
+  <article class="card">
+   <div class="art b">🌻</div><div class="cardbody"><h3>Lerato, 27</h3><p>📍 Pretoria<br><span class="mood">☀ Happy</span></p><p>Music, laughter and a genuine connection.</p><div class="cardactions"><button class="btn alt small" data-pass="Lerato">Pass</button><button class="btn small" data-like="Lerato">♡ Like</button></div></div>
+  </article>
+  <article class="card">
+   <div class="art c">🌙</div><div class="cardbody"><h3>Thabo, 28</h3><p>📍 Polokwane<br><span class="mood">☁ Chilled</span></p><p>Easy conversations and a peaceful vibe.</p><div class="cardactions"><button class="btn alt small" data-pass="Thabo">Pass</button><button class="btn small" data-like="Thabo">♡ Like</button></div></div>
+  </article>
+  <article class="card">
+   <div class="art d">🦋</div><div class="cardbody"><h3>Zanele, 26</h3><p>📍 Durban<br><span class="mood">♡ Thinking</span></p><p>Looking for kindness, honesty and fun.</p><div class="cardactions"><button class="btn alt small" data-pass="Zanele">Pass</button><button class="btn small" data-like="Zanele">♡ Like</button></div></div>
+  </article>
+ </div>
 </section>
 
-<section id="page-matches" class="page section">
-  <h2>Your connections 💕</h2>
-  <p>People you like will appear here in this local demo.</p>
-  <div class="panel" id="matchList">No likes yet. Explore profiles and tap ♡ Like to begin.</div>
+<section id="page-matches" class="page">
+ <h2>Your connections 💕</h2><p>Profiles you like will appear here.</p>
+ <div id="matchList" class="panel">No likes yet. Explore profiles and tap Like to begin.</div>
 </section>
 
-<section id="page-chats" class="page section">
-  <h2>Your conversations 💬</h2>
-  <p>Try the sample conversation below. Messages stay on this page and are not delivered to another person.</p>
-  <div class="panel">
-    <span class="tag">DEMO CHAT · Fictional profile</span>
-    <h3 style="margin-top:12px">Amara 🌸</h3>
-    <div id="chatLog" aria-live="polite">
-      <div class="message">Hey! 😊 What's your idea of a perfect weekend?</div>
-      <div class="message mine">Good food, good music and good company.</div>
-    </div>
-    <p id="messageCount">Your free demo messages: 0 of 2 used.</p>
-    <textarea id="chatInput" placeholder="Write your message..." maxlength="500"></textarea>
-    <div class="actions">
-      <button class="btn" onclick="sendMessage()">Send message</button>
-      <button class="btn secondary" onclick="go('premium')">Unlock unlimited chats</button>
-    </div>
-    <hr style="border-color:var(--line);margin:20px 0">
-    <h3>🎙️ Voice note preview</h3>
-    <p>Record a short voice note on your device. This preview does not send or save it to a server.</p>
-    <button class="btn secondary" id="recordBtn" onclick="recordVoice()">🎙️ Start recording</button>
-    <p id="recordStatus" aria-live="polite">Maximum recording time: 60 seconds.</p>
-    <audio id="voicePlayback" controls class="hidden" style="width:100%"></audio>
-  </div>
-  <p class="notice" style="margin-top:12px">The two-message limit here is only a demo and can be reset. A real app must enforce it securely on the server.</p>
+<section id="page-chats" class="page">
+ <h2>Your conversations 💬</h2>
+ <p>This preview conversation is stored only on this page.</p>
+ <div class="panel">
+  <h3>Amara 🌸</h3>
+  <div id="chatLog" aria-live="polite"></div>
+  <p id="messageCount">Free messages used: 0 of 2</p>
+  <textarea id="chatInput" maxlength="500" placeholder="Write your message..."></textarea>
+  <div class="actions"><button class="btn" id="sendBtn">Send message</button><button class="btn alt" data-go="premium">Premium chats</button></div>
+  <hr style="border-color:var(--line);margin:18px 0">
+  <h3>🎙️ Voice note</h3><p>Record a voice note for local playback. It will not be delivered to another user.</p>
+  <button class="btn alt" id="recordBtn">🎙️ Start recording</button>
+  <p id="recordStatus" aria-live="polite">Up to 60 seconds.</p>
+  <audio id="playback" class="hidden" controls style="width:100%"></audio>
+ </div>
 </section>
 
-<section id="page-nearby" class="page section">
-  <h2>Nearby Radar 📍</h2>
-  <p>Discover possible connections around your area when you choose to share approximate location.</p>
-  <div class="panel">
-    <div style="text-align:center;font-size:75px;padding:20px">📡</div>
-    <h3 style="text-align:center">Your radar awaits</h3>
-    <p style="text-align:center">Live nearby discovery is not connected in this preview.</p>
-    <button class="btn" style="width:100%" onclick="go('premium')">Explore Premium</button>
-  </div>
-  <p class="notice" style="margin-top:12px">Privacy first: the planned feature uses opt-in location and approximate distance, never public exact coordinates. No location is collected by this demo.</p>
+<section id="page-nearby" class="page">
+ <h2>Nearby Radar 📍</h2>
+ <div class="panel" style="text-align:center">
+  <div style="font-size:70px;padding:15px">📡</div>
+  <h3>Discover connections around you</h3>
+  <p>Nearby discovery will be available after location services and Premium are connected.</p>
+  <button class="btn" data-go="premium">Explore Premium</button>
+ </div>
+ <p class="notice">Your exact location should never be shown publicly. Nearby discovery will require your permission.</p>
 </section>
 
-<section id="page-profile" class="page section">
-  <h2>Your SOULsync profile 👤</h2>
-  <p>Make it yours. Your changes below stay in this page preview only.</p>
-  <form class="panel" id="profileForm">
-    <label for="name">Display name</label>
-    <input id="name" maxlength="40" placeholder="What should people call you?" required>
-    <div class="field-grid">
-      <div><label for="age">Age</label><input id="age" type="number" min="18" max="100" placeholder="18+" required></div>
-      <div><label for="city">City or town</label><input id="city" maxlength="60" placeholder="e.g. Phalaborwa" required></div>
-    </div>
-    <label for="bio">A little about you</label>
-    <textarea id="bio" maxlength="300" placeholder="Your interests, your personality, what you hope to find..."></textarea>
-    <label for="vibe">My Vibe · changes every 24 hours in the full app</label>
-    <select id="vibe">
-      <option>☀ Happy</option><option>💧 Sad</option><option>🔥 Angry</option>
-      <option>♡ Romantic</option><option>☁ Chilled</option><option>🌙 Thinking</option>
-    </select>
-    <label for="photos">Profile photos · up to 10</label>
-    <input id="photos" type="file" accept="image/*" multiple>
-    <div id="photoPreview" class="preview-pics"></div>
-    <p class="notice">Only choose photos you have permission to use. Photo previews are temporary and aren't uploaded to a server.</p>
-    <button class="btn" type="submit" style="width:100%;margin-top:15px">Preview my profile</button>
-  </form>
-  <div id="profileResult" class="panel hidden" style="margin-top:12px"></div>
-  <div class="panel" style="margin-top:12px">
-    <h3>✓ Verification badge</h3>
-    <p>A verified tick must only be awarded after a real selfie/face-check service approves the person. No face verification is connected in this demo.</p>
-    <span class="pill">Verification not connected</span>
+<section id="page-profile" class="page">
+ <h2>Your SOULsync profile 👤</h2><p>Tell people a little about yourself.</p>
+ <form class="panel" id="profileForm">
+  <label for="name">Display name</label><input id="name" maxlength="40" placeholder="Your display name" required>
+  <div class="fields">
+   <div><label for="age">Age</label><input id="age" type="number" min="18" max="100" placeholder="18+" required></div>
+   <div><label for="city">City or town</label><input id="city" maxlength="60" placeholder="e.g. Phalaborwa" required></div>
   </div>
-  <div class="panel" style="margin-top:12px">
-    <h3>🛡️ Your safety matters</h3>
-    <p>Blocking and reporting should remain free for every member.</p>
-    <button class="btn secondary" onclick="alert('Demo only. Reporting and blocking will need a real account system and moderation team.')">Preview safety options</button>
-  </div>
+  <label for="bio">About you</label><textarea id="bio" maxlength="300" placeholder="Your interests and personality..."></textarea>
+  <label for="vibe">My Vibe</label>
+  <select id="vibe"><option>☀ Happy</option><option>💧 Sad</option><option>🔥 Angry</option><option>♡ Romantic</option><option>☁ Chilled</option><option>🌙 Thinking</option></select>
+  <label for="photos">Profile photos (up to 10)</label><input id="photos" type="file" accept="image/*" multiple>
+  <div id="photoPreview" class="photo-preview"></div>
+  <p class="notice">Photos are previewed on your device only; they are not uploaded or saved to an account.</p>
+  <button class="btn" type="submit" style="width:100%;margin-top:14px">Preview my profile</button>
+ </form>
+ <div id="profileResult" class="panel hidden"></div>
+ <div class="panel"><h3>✓ Profile verification</h3><p>Face verification must be connected to a real verification service before a verified badge can be awarded.</p><span class="badge">Not yet available</span></div>
+ <div class="panel"><h3>🛡️ Safety first</h3><p>Blocking and reporting should always be free.</p><button class="btn alt" id="safetyBtn">Safety information</button></div>
 </section>
 
-<section id="page-premium" class="page section">
-  <div class="eyebrow">MORE WAYS TO CONNECT</div>
-  <h2>SOULsync Premium ✨</h2>
-  <p>More conversations. More possibilities.</p>
-  <div class="panel" style="border-color:#a978f5">
-    <span class="tag">SIMPLE WEEKLY PLAN</span>
-    <div class="price">R20 <small>/ 7 days</small></div>
-    <p>Manual renewal only. No automatic charges in the planned subscription model.</p>
-    <div class="feature">♡ Unlimited text messaging</div>
-    <div class="feature">🎙️ Voice notes up to 60 seconds</div>
-    <div class="feature">📍 Nearby Radar and approximate distance</div>
-    <div class="feature">💜 Keep building meaningful connections</div>
-    <button class="btn" style="width:100%;margin-top:17px" onclick="alert('Preview only: no payment has been taken. Secure payment integration is not connected yet.')">Choose Premium · R20</button>
-  </div>
-  <p class="notice" style="margin-top:12px">Registration, profile creation, swiping, matching, My Vibe, blocking and reporting are planned to remain free. The two free messages apply per account in the real app. Payments must be securely processed before Premium can be activated.</p>
+<section id="page-premium" class="page">
+ <div class="eyebrow">MORE WAYS TO CONNECT</div><h2>SOULsync Premium ✨</h2><p>More conversations. More possibilities.</p>
+ <div class="panel">
+  <span class="badge">WEEKLY MEMBERSHIP</span><div class="price">R20 <small>/ 7 days</small></div>
+  <p>Renew manually whenever you choose. No automatic charges in the planned model.</p>
+  <div class="rowitem">♡ Unlimited text messaging</div>
+  <div class="rowitem">🎙️ Voice notes up to 60 seconds</div>
+  <div class="rowitem">📍 Nearby Radar with approximate distance</div>
+  <div class="rowitem">💜 Keep building meaningful connections</div>
+  <button class="btn" id="premiumBtn" style="width:100%;margin-top:16px">Choose Premium · R20</button>
+ </div>
+ <p class="notice">Registration, profile creation, likes, matches, My Vibe, blocking and reporting are planned to remain free. Secure payment is not connected yet.</p>
 </section>
 
-<footer>
-  <div class="logo">SOUL<span>sync</span> ♡</div>
-  <p>Real people. Nearby connections. Meaningful matches.</p>
-  <p>18+ only · Respect · Privacy · Real connections</p>
-  <p>Prototype only. No real accounts, matches, messaging delivery, payments, verification or live location are connected.</p>
-</footer>
+<footer><div class="logo">SOUL<span>sync</span> ♡</div><p>Real people. Nearby connections. Meaningful matches.</p><p>18+ only · Respect · Privacy · Real connections</p></footer>
 </main>
 
-<nav class="bottom-nav" aria-label="Quick navigation">
-  <button class="active" data-page="discover"><span>💜</span>Discover</button>
-  <button data-page="matches"><span>💕</span>Matches</button>
-  <button data-page="chats"><span>💬</span>Chats</button>
-  <button data-page="nearby"><span>📍</span>Nearby</button>
-  <button data-page="profile"><span>👤</span>Profile</button>
-</nav>
+<div class="bottom" aria-label="Quick navigation">
+ <button class="active" data-page="discover"><span>💜</span>Discover</button>
+ <button data-page="matches"><span>💕</span>Matches</button>
+ <button data-page="chats"><span>💬</span>Chats</button>
+ <button data-page="nearby"><span>📍</span>Nearby</button>
+ <button data-page="profile"><span>👤</span>Profile</button>
+</div>
 
 <script>
-const pages = ["discover","matches","chats","nearby","profile","premium"];
-function go(name) {
-  pages.forEach(p => {
-    const el = document.getElementById("page-" + p);
-    if (el) el.classList.toggle("active", p === name);
-  });
-  document.querySelectorAll("[data-page]").forEach(b => {
-    b.classList.toggle("active", b.dataset.page === name);
-  });
-  window.scrollTo({top:0,behavior:"smooth"});
+(function(){
+"use strict";
+const pages=["discover","matches","chats","nearby","profile","premium"];
+function go(name){
+ if(!pages.includes(name)) return;
+ pages.forEach(p=>{
+  const el=document.getElementById("page-"+p);
+  if(el) el.classList.toggle("active",p===name);
+ });
+ document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+ window.scrollTo({top:0,behavior:"auto"});
 }
-document.querySelectorAll("[data-page]").forEach(b => b.addEventListener("click", () => go(b.dataset.page)));
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
 
-const liked = new Set();
-function like(name) {
-  liked.add(name);
-  renderMatches();
-  alert(name + " added to your demo likes! A real match requires another real member to like you back.");
+const liked=new Set();
+function renderLikes(){
+ const box=document.getElementById("matchList");
+ box.replaceChildren();
+ if(!liked.size){box.textContent="No likes yet. Explore profiles and tap Like to begin.";return;}
+ liked.forEach(name=>{
+  const row=document.createElement("div");row.className="rowitem";row.textContent="💜 "+name;box.appendChild(row);
+ });
 }
-function pass(name) {
-  alert("You passed on " + name + " in this demo.");
-}
-function renderMatches() {
-  const box = document.getElementById("matchList");
-  if (!liked.size) {
-    box.textContent = "No likes yet. Explore profiles and tap ♡ Like to begin.";
-    return;
-  }
-  box.innerHTML = "";
-  liked.forEach(name => {
-    const row = document.createElement("div");
-    row.className = "feature";
-    row.textContent = "💜 " + name + " · Demo like";
-    box.appendChild(row);
-  });
-}
+document.querySelectorAll("[data-like]").forEach(b=>b.addEventListener("click",()=>{
+ const name=b.dataset.like;liked.add(name);renderLikes();
+ b.textContent="♥ Liked";b.disabled=true;
+}));
+document.querySelectorAll("[data-pass]").forEach(b=>b.addEventListener("click",()=>{
+ const card=b.closest(".card");if(card)card.remove();
+}));
 
-let freeMessages = 0;
-function sendMessage() {
-  const input = document.getElementById("chatInput");
-  const value = input.value.trim();
-  if (!value) { alert("Write a message first."); return; }
-  if (freeMessages >= 2) {
-    go("premium");
-    alert("You've used the two demo messages. Premium is R20 for 7 days in the planned app.");
-    return;
-  }
-  const msg = document.createElement("div");
-  msg.className = "message mine";
-  msg.textContent = value;
-  document.getElementById("chatLog").appendChild(msg);
-  input.value = "";
-  freeMessages++;
-  document.getElementById("messageCount").textContent = "Your free demo messages: " + freeMessages + " of 2 used.";
-  if (freeMessages === 2) {
-    const note = document.createElement("p");
-    note.className = "notice";
-    note.textContent = "That's your two demo messages. Premium unlocks unlimited messaging in the planned app.";
-    document.getElementById("chatLog").appendChild(note);
-  }
-}
-
-document.getElementById("profileForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const age = Number(document.getElementById("age").value);
-  if (age < 18 || age > 100) { alert("SOULsync is for adults aged 18 and older."); return; }
-  const result = document.getElementById("profileResult");
-  result.classList.remove("hidden");
-  result.replaceChildren();
-  const title = document.createElement("h3");
-  title.textContent = document.getElementById("name").value + ", " + age;
-  const details = document.createElement("p");
-  details.textContent = "📍 " + document.getElementById("city").value + " · " + document.getElementById("vibe").value;
-  const bio = document.createElement("p");
-  bio.textContent = document.getElementById("bio").value || "Still writing my story...";
-  const demo = document.createElement("span");
-  demo.className = "tag";
-  demo.textContent = "LOCAL PROFILE PREVIEW";
-  result.append(title, details, bio, demo);
-  go("profile");
+const log=document.getElementById("chatLog");
+const counter=document.getElementById("messageCount");
+let used=0;
+const first=document.createElement("p");first.className="notice";first.textContent="Start a conversation with a meaningful hello.";log.appendChild(first);
+document.getElementById("sendBtn").addEventListener("click",()=>{
+ const input=document.getElementById("chatInput"),value=input.value.trim();
+ if(!value){alert("Write a message first.");return;}
+ if(used>=2){go("premium");alert("You have used your two free preview messages. Premium is R20 for 7 days in the planned app.");return;}
+ const msg=document.createElement("div");msg.className="message mine";msg.textContent=value;log.appendChild(msg);
+ input.value="";used++;counter.textContent="Free messages used: "+used+" of 2";
+ if(used===2){const note=document.createElement("p");note.className="notice";note.textContent="You've used both free preview messages.";log.appendChild(note);}
 });
 
-document.getElementById("photos").addEventListener("change", function() {
-  const files = Array.from(this.files || []);
-  const preview = document.getElementById("photoPreview");
-  preview.replaceChildren();
-  if (files.length > 10) {
-    alert("Please choose no more than 10 photos.");
-    this.value = "";
-    return;
-  }
-  files.forEach(file => {
-    if (!file.type.startsWith("image/")) return;
-    const img = document.createElement("img");
-    img.alt = "Selected profile photo preview";
-    img.src = URL.createObjectURL(file);
-    preview.appendChild(img);
-  });
+document.getElementById("profileForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const age=Number(document.getElementById("age").value);
+ if(age<18||age>100){alert("SOULsync is for adults aged 18 and older.");return;}
+ const result=document.getElementById("profileResult");result.replaceChildren();result.classList.remove("hidden");
+ const title=document.createElement("h3");title.textContent=document.getElementById("name").value+", "+age;
+ const city=document.createElement("p");city.textContent="📍 "+document.getElementById("city").value+" · "+document.getElementById("vibe").value;
+ const bio=document.createElement("p");bio.textContent=document.getElementById("bio").value||"Still writing my story...";
+ result.append(title,city,bio);
+ go("profile");
 });
 
-let recorder = null, chunks = [], stream = null, stopTimer = null;
-async function recordVoice() {
-  const btn = document.getElem
+document.getElementById("photos").addEventListener("change",function(){
+ const files=Array.from(this.files||[]),preview=document.getElementById("photoPreview");
+ preview.replaceChildren();
+ if(files.length>10){alert("Choose no more than 10 photos.");this.value="";return;}
+ files.forEach(file=>{
+  if(!file.type.startsWith("image/"))return;
+  const img=document.createElement("img");img.alt="Selected photo";
+  img.src=URL.createObjectURL(file);preview.appendChild(img);
+ });
+});
+
+document.getElementById("safetyBtn").addEventListener("click",()=>{
+ alert("In the full app, members will be able to block and report accounts for free. These features need a secure account system and moderation process.");
+});
+document.getElementById("premiumBtn").addEventListener("click",()=>{
+ alert("Premium payment is not connected yet. No money has been taken and Premium has not been activated.");
+});
+
+let recorder=null,stream=null,chunks=[],timer=null;
+const recordBtn=document.getElementById("recordBtn");
+const status=document.getElementById("recordStatus");
+const playback=document.getElementById("playback");
+recordBtn.addEventListener("click",async()=>{
+ if(recorder&&recorder.state==="recording"){recorder.stop();return;}
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){
+  status.textContent="Voice recording is not supported by this browser. Try a supported browser on the secure website.";return;
+ }
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  chunks=[];recorder=new MediaRecorder(stream);
+  recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+  recorder.onstop=()=>{
+   clearTimeout(timer);stream.getTracks().forEach(t=>t.stop());
+   if(chunks.length){
+    const blob=new Blob(chunks,{type:recorder.mimeType||"audio/webm"});
+    playback.src=URL.createObjectURL(blob);playback.classList.remove("hidden");
+    status.textContent="Voice note ready for local playback. It has not been sent.";
+   }
+   recordBtn.textContent="🎙️ Record again";
+  };
+  recorder.start();recordBtn.textContent="■ Stop recording";
+  status.textContent="Recording... stop when ready, maximum 60 seconds.";
+  timer=setTimeout(()=>{if(recorder&&recorder.state==="recording")recorder.stop();},60000);
+ }catch(err){status.textContent="Microphone permission was not granted. Allow microphone access and try again.";}
+});
+})();
+</script>
+</body>
+   </html>
+   
