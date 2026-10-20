@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,15 +56,21 @@ textarea{min-height:85px;resize:vertical}
 .bottom button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:4px}
 .bottom button span{display:block;font-size:18px}.bottom button.active{color:var(--pink)}
 footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
+.authbar{display:flex;gap:8px;align-items:center}
+.authbox{max-width:850px;margin:14px auto;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.authgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.authbox label{display:block;font-size:13px;color:var(--muted);margin:8px 0 4px}
+.authbox input{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#170e20;color:var(--text)}
+.authmessage{margin-top:10px;padding:10px;border-radius:10px;background:#35203f;color:var(--text);overflow-wrap:anywhere}
+.authhidden{display:none!important}.accountpill{font-size:12px;color:var(--pink);overflow-wrap:anywhere}
 @media(min-width:650px){main{padding:24px 20px 100px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.art{height:180px}.hero{padding:40px}}
 </style>
 </head>
 <body>
 <header>
  <div class="logo">SOUL<span>sync</span> ♡</div>
- <span class="badge">South Africa 🇿🇦</span>
+ <div class="authbar"><span class="badge">South Africa 🇿🇦</span><button class="btn small" id="accountToggle">Join / Log in</button></div>
 </header>
-
 <nav aria-label="Main navigation">
  <button class="active" data-page="discover">💜 Discover</button>
  <button data-page="matches">💕 Matches</button>
@@ -74,6 +79,31 @@ footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
  <button data-page="profile">👤 Profile</button>
  <button data-page="premium">✨ Premium</button>
 </nav>
+
+<section class="authbox" id="accountPanel">
+ <h2>Join SOULsync 💜</h2>
+ <p>Create an account or log in. You must be 18 or older. This creates a secure sign-in account; profile storage and matching are not connected yet.</p>
+ <div class="authgrid">
+  <form id="signupForm">
+   <h3>Create account</h3>
+   <label for="signupName">Display name</label><input id="signupName" maxlength="40" autocomplete="nickname" required>
+   <label for="signupAge">Age (18+)</label><input id="signupAge" type="number" min="18" max="100" required>
+   <label for="signupEmail">Email address</label><input id="signupEmail" type="email" autocomplete="email" required>
+   <label for="signupPassword">Password (at least 8 characters)</label><input id="signupPassword" type="password" minlength="8" autocomplete="new-password" required>
+   <p><label><input id="terms18" type="checkbox" required style="width:auto"> I confirm I am 18 or older.</label></p>
+   <button class="btn" type="submit">Create account</button>
+  </form>
+  <form id="loginForm">
+   <h3>Welcome back</h3>
+   <label for="loginEmail">Email address</label><input id="loginEmail" type="email" autocomplete="email" required>
+   <label for="loginPassword">Password</label><input id="loginPassword" type="password" autocomplete="current-password" required>
+   <p><button class="btn alt" type="submit">Log in</button></p>
+   <button class="btn alt small" id="resetPassword" type="button">Forgot password?</button>
+  </form>
+ </div>
+ <div class="authmessage" id="authMessage" role="status" aria-live="polite">Account sign-in is ready to test once this update is saved and published.</div>
+ <div class="actions"><span class="accountpill" id="accountStatus">Not logged in</span><button class="btn alt small authhidden" id="logoutBtn" type="button">Log out</button></div>
+</section>
 
 <main>
 <section class="hero">
@@ -85,7 +115,6 @@ footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
   <button class="btn alt" data-go="profile">Create my profile</button>
  </div>
 </section>
-
 <div class="stats">
  <div class="stat"><strong>—</strong><small>Members</small></div>
  <div class="stat"><strong>—</strong><small>Active now</small></div>
@@ -96,69 +125,44 @@ footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
 <section id="page-discover" class="page active">
  <div class="heading"><div><h2>Discover your people ✨</h2><p>Every connection starts somewhere.</p></div></div>
  <div class="grid">
-  <article class="card">
-   <div class="art">🌸</div><div class="cardbody"><h3>Amara, 25</h3><p>📍 Johannesburg<br><span class="mood">♡ Romantic</span></p><p>Good energy, deep talks and little adventures.</p><div class="cardactions"><button class="btn alt small" data-pass="Amara">Pass</button><button class="btn small" data-like="Amara">♡ Like</button></div></div>
-  </article>
-  <article class="card">
-   <div class="art b">🌻</div><div class="cardbody"><h3>Lerato, 27</h3><p>📍 Pretoria<br><span class="mood">☀ Happy</span></p><p>Music, laughter and a genuine connection.</p><div class="cardactions"><button class="btn alt small" data-pass="Lerato">Pass</button><button class="btn small" data-like="Lerato">♡ Like</button></div></div>
-  </article>
-  <article class="card">
-   <div class="art c">🌙</div><div class="cardbody"><h3>Thabo, 28</h3><p>📍 Polokwane<br><span class="mood">☁ Chilled</span></p><p>Easy conversations and a peaceful vibe.</p><div class="cardactions"><button class="btn alt small" data-pass="Thabo">Pass</button><button class="btn small" data-like="Thabo">♡ Like</button></div></div>
-  </article>
-  <article class="card">
-   <div class="art d">🦋</div><div class="cardbody"><h3>Zanele, 26</h3><p>📍 Durban<br><span class="mood">♡ Thinking</span></p><p>Looking for kindness, honesty and fun.</p><div class="cardactions"><button class="btn alt small" data-pass="Zanele">Pass</button><button class="btn small" data-like="Zanele">♡ Like</button></div></div>
-  </article>
+  <article class="card"><div class="art">🌸</div><div class="cardbody"><h3>Amara, 25</h3><p>📍 Johannesburg<br><span class="mood">♡ Romantic</span></p><p>Good energy, deep talks and little adventures.</p><div class="cardactions"><button class="btn alt small" data-pass="Amara">Pass</button><button class="btn small" data-like="Amara">♡ Like</button></div></div></article>
+  <article class="card"><div class="art b">🌻</div><div class="cardbody"><h3>Lerato, 27</h3><p>📍 Pretoria<br><span class="mood">☀ Happy</span></p><p>Music, laughter and a genuine connection.</p><div class="cardactions"><button class="btn alt small" data-pass="Lerato">Pass</button><button class="btn small" data-like="Lerato">♡ Like</button></div></div></article>
+  <article class="card"><div class="art c">🌙</div><div class="cardbody"><h3>Thabo, 28</h3><p>📍 Polokwane<br><span class="mood">☁ Chilled</span></p><p>Easy conversations and a peaceful vibe.</p><div class="cardactions"><button class="btn alt small" data-pass="Thabo">Pass</button><button class="btn small" data-like="Thabo">♡ Like</button></div></div></article>
+  <article class="card"><div class="art d">🦋</div><div class="cardbody"><h3>Zanele, 26</h3><p>📍 Durban<br><span class="mood">♡ Thinking</span></p><p>Looking for kindness, honesty and fun.</p><div class="cardactions"><button class="btn alt small" data-pass="Zanele">Pass</button><button class="btn small" data-like="Zanele">♡ Like</button></div></div></article>
  </div>
+ <p class="notice">These are sample profiles for the website preview, not registered SOULsync members.</p>
 </section>
 
-<section id="page-matches" class="page">
- <h2>Your connections 💕</h2><p>Profiles you like will appear here.</p>
- <div id="matchList" class="panel">No likes yet. Explore profiles and tap Like to begin.</div>
-</section>
+<section id="page-matches" class="page"><h2>Your connections 💕</h2><p>Profiles you like will appear here.</p><div id="matchList" class="panel">No likes yet. Explore profiles and tap Like to begin.</div></section>
 
 <section id="page-chats" class="page">
- <h2>Your conversations 💬</h2>
- <p>This preview conversation is stored only on this page.</p>
- <div class="panel">
-  <h3>Amara 🌸</h3>
-  <div id="chatLog" aria-live="polite"></div>
-  <p id="messageCount">Free messages used: 0 of 2</p>
-  <textarea id="chatInput" maxlength="500" placeholder="Write your message..."></textarea>
-  <div class="actions"><button class="btn" id="sendBtn">Send message</button><button class="btn alt" data-go="premium">Premium chats</button></div>
-  <hr style="border-color:var(--line);margin:18px 0">
-  <h3>🎙️ Voice note</h3><p>Record a voice note for local playback. It will not be delivered to another user.</p>
-  <button class="btn alt" id="recordBtn">🎙️ Start recording</button>
-  <p id="recordStatus" aria-live="polite">Up to 60 seconds.</p>
-  <audio id="playback" class="hidden" controls style="width:100%"></audio>
+ <h2>Your conversations 💬</h2><p>This preview conversation is stored only on this page.</p>
+ <div class="panel"><h3>Amara 🌸</h3><div id="chatLog" aria-live="polite"></div>
+ <p id="messageCount">Free messages used: 0 of 2</p><textarea id="chatInput" maxlength="500" placeholder="Write your message..."></textarea>
+ <div class="actions"><button class="btn" id="sendBtn">Send message</button><button class="btn alt" data-go="premium">Premium chats</button></div>
+ <hr style="border-color:var(--line);margin:18px 0">
+ <h3>🎙️ Voice note</h3><p>Record a voice note for local playback. It will not be delivered to another user.</p>
+ <button class="btn alt" id="recordBtn">🎙️ Start recording</button><p id="recordStatus" aria-live="polite">Up to 60 seconds.</p><audio id="playback" class="hidden" controls style="width:100%"></audio>
  </div>
 </section>
 
 <section id="page-nearby" class="page">
- <h2>Nearby Radar 📍</h2>
- <div class="panel" style="text-align:center">
-  <div style="font-size:70px;padding:15px">📡</div>
-  <h3>Discover connections around you</h3>
-  <p>Nearby discovery will be available after location services and Premium are connected.</p>
-  <button class="btn" data-go="premium">Explore Premium</button>
- </div>
+ <h2>Nearby Radar 📍</h2><div class="panel" style="text-align:center"><div style="font-size:70px;padding:15px">📡</div>
+ <h3>Discover connections around you</h3><p>Nearby discovery will be available after location services and Premium are connected.</p><button class="btn" data-go="premium">Explore Premium</button></div>
  <p class="notice">Your exact location should never be shown publicly. Nearby discovery will require your permission.</p>
 </section>
 
 <section id="page-profile" class="page">
  <h2>Your SOULsync profile 👤</h2><p>Tell people a little about yourself.</p>
  <form class="panel" id="profileForm">
-  <label for="name">Display name</label><input id="name" maxlength="40" placeholder="Your display name" required>
-  <div class="fields">
-   <div><label for="age">Age</label><input id="age" type="number" min="18" max="100" placeholder="18+" required></div>
-   <div><label for="city">City or town</label><input id="city" maxlength="60" placeholder="e.g. Phalaborwa" required></div>
-  </div>
-  <label for="bio">About you</label><textarea id="bio" maxlength="300" placeholder="Your interests and personality..."></textarea>
-  <label for="vibe">My Vibe</label>
-  <select id="vibe"><option>☀ Happy</option><option>💧 Sad</option><option>🔥 Angry</option><option>♡ Romantic</option><option>☁ Chilled</option><option>🌙 Thinking</option></select>
-  <label for="photos">Profile photos (up to 10)</label><input id="photos" type="file" accept="image/*" multiple>
-  <div id="photoPreview" class="photo-preview"></div>
-  <p class="notice">Photos are previewed on your device only; they are not uploaded or saved to an account.</p>
-  <button class="btn" type="submit" style="width:100%;margin-top:14px">Preview my profile</button>
+ <label for="name">Display name</label><input id="name" maxlength="40" placeholder="Your display name" required>
+ <div class="fields"><div><label for="age">Age</label><input id="age" type="number" min="18" max="100" placeholder="18+" required></div>
+ <div><label for="city">City or town</label><input id="city" maxlength="60" placeholder="e.g. Phalaborwa" required></div></div>
+ <label for="bio">About you</label><textarea id="bio" maxlength="300" placeholder="Your interests and personality..."></textarea>
+ <label for="vibe">My Vibe</label><select id="vibe"><option>☀ Happy</option><option>💧 Sad</option><option>🔥 Angry</option><option>♡ Romantic</option><option>☁ Chilled</option><option>🌙 Thinking</option></select>
+ <label for="photos">Profile photos (up to 10)</label><input id="photos" type="file" accept="image/*" multiple><div id="photoPreview" class="photo-preview"></div>
+ <p class="notice">Photos are previewed on your device only; they are not uploaded or saved to an account.</p>
+ <button class="btn" type="submit" style="width:100%;margin-top:14px">Preview my profile</button>
  </form>
  <div id="profileResult" class="panel hidden"></div>
  <div class="panel"><h3>✓ Profile verification</h3><p>Face verification must be connected to a real verification service before a verified badge can be awarded.</p><span class="badge">Not yet available</span></div>
@@ -167,27 +171,19 @@ footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
 
 <section id="page-premium" class="page">
  <div class="eyebrow">MORE WAYS TO CONNECT</div><h2>SOULsync Premium ✨</h2><p>More conversations. More possibilities.</p>
- <div class="panel">
-  <span class="badge">WEEKLY MEMBERSHIP</span><div class="price">R20 <small>/ 7 days</small></div>
-  <p>Renew manually whenever you choose. No automatic charges in the planned model.</p>
-  <div class="rowitem">♡ Unlimited text messaging</div>
-  <div class="rowitem">🎙️ Voice notes up to 60 seconds</div>
-  <div class="rowitem">📍 Nearby Radar with approximate distance</div>
-  <div class="rowitem">💜 Keep building meaningful connections</div>
-  <button class="btn" id="premiumBtn" style="width:100%;margin-top:16px">Choose Premium · R20</button>
- </div>
+ <div class="panel"><span class="badge">WEEKLY MEMBERSHIP</span><div class="price">R20 <small>/ 7 days</small></div>
+ <p>Renew manually whenever you choose. No automatic charges in the planned model.</p>
+ <div class="rowitem">♡ Unlimited text messaging</div><div class="rowitem">🎙️ Voice notes up to 60 seconds</div>
+ <div class="rowitem">📍 Nearby Radar with approximate distance</div><div class="rowitem">💜 Keep building meaningful connections</div>
+ <button class="btn" id="premiumBtn" style="width:100%;margin-top:16px">Choose Premium · R20</button></div>
  <p class="notice">Registration, profile creation, likes, matches, My Vibe, blocking and reporting are planned to remain free. Secure payment is not connected yet.</p>
 </section>
-
 <footer><div class="logo">SOUL<span>sync</span> ♡</div><p>Real people. Nearby connections. Meaningful matches.</p><p>18+ only · Respect · Privacy · Real connections</p></footer>
 </main>
 
 <div class="bottom" aria-label="Quick navigation">
- <button class="active" data-page="discover"><span>💜</span>Discover</button>
- <button data-page="matches"><span>💕</span>Matches</button>
- <button data-page="chats"><span>💬</span>Chats</button>
- <button data-page="nearby"><span>📍</span>Nearby</button>
- <button data-page="profile"><span>👤</span>Profile</button>
+ <button class="active" data-page="discover"><span>💜</span>Discover</button><button data-page="matches"><span>💕</span>Matches</button>
+ <button data-page="chats"><span>💬</span>Chats</button><button data-page="nearby"><span>📍</span>Nearby</button><button data-page="profile"><span>👤</span>Profile</button>
 </div>
 
 <script>
@@ -195,37 +191,22 @@ footer{text-align:center;padding:27px 5px;font-size:12px;color:var(--muted)}
 "use strict";
 const pages=["discover","matches","chats","nearby","profile","premium"];
 function go(name){
- if(!pages.includes(name)) return;
- pages.forEach(p=>{
-  const el=document.getElementById("page-"+p);
-  if(el) el.classList.toggle("active",p===name);
- });
+ if(!pages.includes(name))return;
+ pages.forEach(p=>{const el=document.getElementById("page-"+p);if(el)el.classList.toggle("active",p===name);});
  document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
  window.scrollTo({top:0,behavior:"auto"});
 }
 document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
-
 const liked=new Set();
 function renderLikes(){
- const box=document.getElementById("matchList");
- box.replaceChildren();
+ const box=document.getElementById("matchList");box.replaceChildren();
  if(!liked.size){box.textContent="No likes yet. Explore profiles and tap Like to begin.";return;}
- liked.forEach(name=>{
-  const row=document.createElement("div");row.className="rowitem";row.textContent="💜 "+name;box.appendChild(row);
- });
+ liked.forEach(name=>{const row=document.createElement("div");row.className="rowitem";row.textContent="💜 "+name;box.appendChild(row);});
 }
-document.querySelectorAll("[data-like]").forEach(b=>b.addEventListener("click",()=>{
- const name=b.dataset.like;liked.add(name);renderLikes();
- b.textContent="♥ Liked";b.disabled=true;
-}));
-document.querySelectorAll("[data-pass]").forEach(b=>b.addEventListener("click",()=>{
- const card=b.closest(".card");if(card)card.remove();
-}));
-
-const log=document.getElementById("chatLog");
-const counter=document.getElementById("messageCount");
-let used=0;
+document.querySelectorAll("[data-like]").forEach(b=>b.addEventListener("click",()=>{liked.add(b.dataset.like);renderLikes();b.textContent="♥ Liked";b.disabled=true;}));
+document.querySelectorAll("[data-pass]").forEach(b=>b.addEventListener("click",()=>{const card=b.closest(".card");if(card)card.remove();}));
+const log=document.getElementById("chatLog"),counter=document.getElementById("messageCount");let used=0;
 const first=document.createElement("p");first.className="notice";first.textContent="Start a conversation with a meaningful hello.";log.appendChild(first);
 document.getElementById("sendBtn").addEventListener("click",()=>{
  const input=document.getElementById("chatInput"),value=input.value.trim();
@@ -235,66 +216,27 @@ document.getElementById("sendBtn").addEventListener("click",()=>{
  input.value="";used++;counter.textContent="Free messages used: "+used+" of 2";
  if(used===2){const note=document.createElement("p");note.className="notice";note.textContent="You've used both free preview messages.";log.appendChild(note);}
 });
-
 document.getElementById("profileForm").addEventListener("submit",e=>{
- e.preventDefault();
- const age=Number(document.getElementById("age").value);
+ e.preventDefault();const age=Number(document.getElementById("age").value);
  if(age<18||age>100){alert("SOULsync is for adults aged 18 and older.");return;}
  const result=document.getElementById("profileResult");result.replaceChildren();result.classList.remove("hidden");
  const title=document.createElement("h3");title.textContent=document.getElementById("name").value+", "+age;
  const city=document.createElement("p");city.textContent="📍 "+document.getElementById("city").value+" · "+document.getElementById("vibe").value;
  const bio=document.createElement("p");bio.textContent=document.getElementById("bio").value||"Still writing my story...";
- result.append(title,city,bio);
- go("profile");
+ result.append(title,city,bio);go("profile");
 });
-
 document.getElementById("photos").addEventListener("change",function(){
- const files=Array.from(this.files||[]),preview=document.getElementById("photoPreview");
- preview.replaceChildren();
+ const files=Array.from(this.files||[]),preview=document.getElementById("photoPreview");preview.replaceChildren();
  if(files.length>10){alert("Choose no more than 10 photos.");this.value="";return;}
- files.forEach(file=>{
-  if(!file.type.startsWith("image/"))return;
-  const img=document.createElement("img");img.alt="Selected photo";
-  img.src=URL.createObjectURL(file);preview.appendChild(img);
- });
+ files.forEach(file=>{if(!file.type.startsWith("image/"))return;const img=document.createElement("img");img.alt="Selected photo";img.src=URL.createObjectURL(file);preview.appendChild(img);});
 });
-
-document.getElementById("safetyBtn").addEventListener("click",()=>{
- alert("In the full app, members will be able to block and report accounts for free. These features need a secure account system and moderation process.");
-});
-document.getElementById("premiumBtn").addEventListener("click",()=>{
- alert("Premium payment is not connected yet. No money has been taken and Premium has not been activated.");
-});
-
+document.getElementById("safetyBtn").addEventListener("click",()=>alert("In the full app, members will be able to block and report accounts for free. These features need a secure account system and moderation process."));
+document.getElementById("premiumBtn").addEventListener("click",()=>alert("Premium payment is not connected yet. No money has been taken and Premium has not been activated."));
 let recorder=null,stream=null,chunks=[],timer=null;
-const recordBtn=document.getElementById("recordBtn");
-const status=document.getElementById("recordStatus");
-const playback=document.getElementById("playback");
+const recordBtn=document.getElementById("recordBtn"),recordStatus=document.getElementById("recordStatus"),playback=document.getElementById("playback");
 recordBtn.addEventListener("click",async()=>{
  if(recorder&&recorder.state==="recording"){recorder.stop();return;}
- if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){
-  status.textContent="Voice recording is not supported by this browser. Try a supported browser on the secure website.";return;
- }
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){recordStatus.textContent="Voice recording is not supported by this browser. Try a supported browser on the secure website.";return;}
  try{
-  stream=await navigator.mediaDevices.getUserMedia({audio:true});
-  chunks=[];recorder=new MediaRecorder(stream);
-  recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
-  recorder.onstop=()=>{
-   clearTimeout(timer);stream.getTracks().forEach(t=>t.stop());
-   if(chunks.length){
-    const blob=new Blob(chunks,{type:recorder.mimeType||"audio/webm"});
-    playback.src=URL.createObjectURL(blob);playback.classList.remove("hidden");
-    status.textContent="Voice note ready for local playback. It has not been sent.";
-   }
-   recordBtn.textContent="🎙️ Record again";
-  };
-  recorder.start();recordBtn.textContent="■ Stop recording";
-  status.textContent="Recording... stop when ready, maximum 60 seconds.";
-  timer=setTimeout(()=>{if(recorder&&recorder.state==="recording")recorder.stop();},60000);
- }catch(err){status.textContent="Microphone permission was not granted. Allow microphone access and try again.";}
-});
-})();
-</script>
-</body>
-   </html> 
-   
+  stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);
+  recorder.ondataavailable=e=>{if(e.data&&e
